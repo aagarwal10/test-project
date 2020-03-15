@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\test-service-implementation\test-service-implementation.csproj" />
+    <ProjectReference Include="..\test-service-interfaces\test-service-interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

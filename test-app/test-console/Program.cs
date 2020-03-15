@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using test_service_implementation;
 
 namespace test_console
 {
@@ -18,16 +19,20 @@ namespace test_console
 
             var config = builder.Build();
 
-            var apiUrl = config["apiUrl"];
+            var messageService = new MessageService(config);
 
-            if (string.IsNullOrEmpty(apiUrl))
-            {
-                throw new NullReferenceException($"apiUrl is not configured in appsetting.json");
-            }
+            messageService.Write("Hello World!!");
 
-            var message = await _client.GetStringAsync(apiUrl);
+            //var apiUrl = config["apiUrl"];
 
-            Console.WriteLine(message);
+            //if (string.IsNullOrEmpty(apiUrl))
+            //{
+            //    throw new NullReferenceException($"apiUrl is not configured in appsetting.json");
+            //}
+
+            //var message = await _client.GetStringAsync(apiUrl);
+
+            //Console.WriteLine(message);
         }
     }
 }

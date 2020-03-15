@@ -9,5 +9,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\test-service-implementation\test-service-implementation.csproj" />
+    <ProjectReference Include="..\test-service-interfaces\test-service-interfaces.csproj" />
+  </ItemGroup>
+
 
 </Project>

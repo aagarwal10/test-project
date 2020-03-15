@@ -17,8 +17,14 @@ namespace test_service_implementation
         {
             var currentWriterType = _configuration["CurrentWriterType"];
 
+            if (string.IsNullOrEmpty(currentWriterType))
+            {
+                throw new NullReferenceException("'CurrentWriterType' in appsetting.json is empty");
+            }
+
             IWriter writer;
 
+            //Strategy pattern 
             switch (currentWriterType.ToUpper())
             {
                 case "CONSOLE":

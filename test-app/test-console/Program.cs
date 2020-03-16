@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
 using test_service_implementation;
 
 namespace test_console
@@ -11,7 +9,7 @@ namespace test_console
     {
         static readonly HttpClient _client = new HttpClient();
 
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

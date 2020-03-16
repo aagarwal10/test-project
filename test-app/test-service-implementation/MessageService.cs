@@ -8,6 +8,8 @@ namespace test_service_implementation
     {
         private readonly IConfiguration _configuration;
 
+        public IWriter Writer { get; private set; }
+
         public MessageService(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -22,25 +24,16 @@ namespace test_service_implementation
                 throw new NullReferenceException("'CurrentWriterType' in appsetting.json is empty");
             }
 
-            IWriter writer;
-
             //Strategy pattern 
-            switch (currentWriterType.ToUpper())
+            Writer = (currentWriterType.ToUpper()) switch
             {
-                case "CONSOLE":
-                    writer = new ConsoleWriter();
-                    break;
+                "CONSOLE" => new ConsoleWriter(),
+                "DATABASE" => new DbWriter(),
+                _ => throw new ApplicationException("No supported writer type configured correctly. " +
+                                                    "Please check 'CurrentWriterType' in appsetting.json"),
+            };
 
-                case "DATABASE":
-                    writer = new DbWriter();
-                    break;
-
-                default:
-                    throw new ApplicationException("No supported writer type configured correctly. " +
-                                                   "Please check 'CurrentWriterType' in appsetting.json");
-            }
-
-            writer.Write(message);
+            Writer.Write(message);
         }
     }
 }
